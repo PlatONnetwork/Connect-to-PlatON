@@ -35,7 +35,7 @@ export default defineConfig({
       },
     ],
     ['w-btn', { color: '#000', 'background-color': '#fff' }],
-    ['b-btn', { color: '#fff', 'background-color': '#000', border: '1px solid #fff' }],
+    ['b-btn', { color: '#fff', border: '1px solid #fff' }],
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
 })

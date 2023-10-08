@@ -8,6 +8,7 @@ export type NETWORK = {
   explorer: string
   faucet?: string
   tokens: TOKEN[]
+  decimal: number
 }
 
 export type TOKEN = {
@@ -16,4 +17,5 @@ export type TOKEN = {
   label: string
   contractAddress: string
   decimal: number
+  symbol: string
 }

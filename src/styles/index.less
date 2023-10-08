@@ -85,16 +85,52 @@ br {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #fff;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #fff;
 }
 
 
 .btn {
   width: 140px;
   height: 40px;
+}
+
+.cell {
+  @apply flex-auto;
+
+  & p:nth-child(1) {
+    @apply text-[#999] text-[12px];
+  }
+
+  & p:nth-child(2) {
+    @apply font-m leading-[16px];
+  }
+}
+
+.col:not(:last-child) {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 20px;
+    background: #D9D9D9;
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.address-dropdown-box {
+  .ant-dropdown-menu-submenu .ant-dropdown-menu {
+    border-radius: 2px;
+  }
 }
