@@ -1,13 +1,20 @@
 import myWeb3 from '@/utils/web3'
-import { Dropdown, ConfigProvider } from 'antd'
-import type { MenuProps } from 'antd'
+import { Dropdown, ConfigProvider, MenuProps, Col, message } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import metamask from '@/assets/img/metamask.png'
 import { NETWORK, TOKEN } from '@/config/type'
-import { Col, Row } from 'antd'
+import errorHandler from '@/utils/errorHandler'
+import useClientSize from '@/hooks/useClientSize'
 
 const Home = () => {
   const [address, setAddress] = useState('')
+
+  const { clientWidth } = useClientSize()
+
+  const isMobile = useMemo(() => clientWidth <= 640, [clientWidth])
+
+  console.log('isMobile', isMobile)
+
   const connect = async () => {
     const [addr] = await myWeb3.connectWallet()
     addr && setAddress(addr)
@@ -32,7 +39,9 @@ const Home = () => {
     try {
       if (!address) await connect()
       await myWeb3.switchNetwork(network)
+      message.success('')
     } catch (error) {
+      errorHandler(error)
       console.log('error:', error)
     }
   }
@@ -42,31 +51,38 @@ const Home = () => {
       if (!address) await connect()
       const chainId = await myWeb3.getChianId()
       if (network.chainId !== chainId) await myWeb3.switchNetwork(network)
-      const res = await myWeb3.addToken(token)
-      console.log('res', res)
-    } catch (error) {}
+      await myWeb3.addToken(token)
+      message.success('')
+    } catch (error) {
+      errorHandler(error)
+      console.log('error:', error)
+    }
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex-between">
-        <div className="flex flex-col gap-[12px]">
+    <div className="flex flex-col ">
+      <div className="flex-between lt-md:flex-col">
+        <div className="flex flex-col gap-[12px] lt-md:mt-[24px]">
           <p className="font-b text-[24px] leading-[24px]">Connect to PlatON</p>
           <p className="text-[#999] text-[14px] leading-[14px]">
             After connecting your wallet, you can quickly add the PlatON network and tokens to your wallet.
           </p>
         </div>
-        <div className="h-[40px] leading-[40px] pointer w-btn w-auto">
+        <div className="h-[40px] leading-[40px] pointer b-btn w-auto lt-md:w-full lt-md:mt-[16px]">
           {address ? (
             <ConfigProvider
               theme={{
                 token: {
                   borderRadius: 0,
+                  colorBgElevated: `rgba(17, 17, 17, 1)`,
+                  colorText: `#fff`,
+                  controlPaddingHorizontal: 14,
+                  controlItemBgHover: `rgba(255,255,255,0.1)`,
                 },
               }}
             >
               <Dropdown overlayClassName={`address-dropdown-box`} menu={{ items }}>
-                <div className="flex-center px-[20px] gap-[8px]">
+                <div className="flex-center px-[20px] gap-[20px]">
                   <img className="w-[24px]" src={metamask} alt="" />
                   {getAddress(address)}
                   <DownOutlined />
@@ -78,21 +94,25 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-[30px] mt-[30px]">
+      <div className="flex flex-col gap-[30px] mt-[30px] mb-[65px]">
         {supportList.map(item => {
           return (
-            <div className="bg-[#111] p-[40px]" key={item.id}>
+            <div className="bg-[#111] p-[40px] lt-md:p-[24px]" key={item.id}>
               <div className="flex justify-between mb-[22px]">
                 <div className="flex-center gap-[18px]">
                   <img src={item.icon} alt="" />
                   <p className="text-[20px] font-b">{item.network}</p>
                 </div>
-                <div className="btn w-btn" onClick={() => addNetwork(item)}>
-                  Add to Wallet
-                </div>
+                {isMobile ? (
+                  ''
+                ) : (
+                  <div className="btn w-btn" onClick={() => addNetwork(item)}>
+                    Add to Wallet
+                  </div>
+                )}
               </div>
               <div className="flex-col">
-                <div className="b-base w-full flex px-[40px] py-[20px] mb-[20px]">
+                <div className="b-base w-full flex px-[40px] py-[20px] mb-[20px] lt-xxl:flex-wrap lt-md:p-0">
                   <div className="cell col">
                     <p>ChainID</p>
                     <p>{item.chainId}</p>
@@ -122,26 +142,43 @@ const Home = () => {
                     </div>
                   )}
                 </div>
+                {isMobile ? (
+                  <div className="btn w-btn important-w-full mb-[30px]" onClick={() => addNetwork(item)}>
+                    Add to Wallet
+                  </div>
+                ) : (
+                  ''
+                )}
                 <div className="flex flex-col gap-[20px]">
                   {item.tokens &&
                     item.tokens.map(i => {
                       return (
-                        <div className="bg-[#222] flex w-full p-[34px]" key={i.id}>
-                          <Col span={6} className="cell flex-start gap-[12px]">
+                        <div
+                          className="bg-[#222] flex w-full p-[34px] lt-xl:flex-wrap lt-xl:gap-[20px] lt-md:p-[20px]"
+                          key={i.id}
+                        >
+                          <Col span={isMobile ? 24 : 6} className="cell flex-start gap-[12px] min-w-[200px]">
                             <img src={i.icon} alt="" />
-                            <p className="whitespace-nowrap">{i.label}</p>
+                            <p className="whitespace-nowrap font-b text-[20px]">{i.label}</p>
                           </Col>
-                          <Col span={10} className="cell">
+                          <Col span={isMobile ? 24 : 10} className="cell">
                             <p>Contract Address</p>
-                            <p>{i.contractAddress}</p>
+                            <p
+                              onClick={() => {
+                                copyFn(i.contractAddress)
+                              }}
+                              className="contractAddress pointer"
+                            >
+                              {i.contractAddress}
+                            </p>
                           </Col>
-                          <Col span={2} className="cell">
+                          <Col span={isMobile ? 24 : 2} className="cell min-w-[200px]">
                             <p>Decimal</p>
                             <p>{i.decimal}</p>
                           </Col>
-                          <Col span={6} className="flex justify-end">
+                          <Col span={isMobile ? 24 : 6} className="flex justify-end">
                             <div
-                              className="btn b-btn"
+                              className="btn b-btn lt-md:important-w-full"
                               onClick={() => {
                                 addToken(item, i)
                               }}

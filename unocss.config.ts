@@ -9,8 +9,11 @@ export default defineConfig({
   },
   theme: {
     breakpoints: {
-      sm: '320px',
+      sm: '340px',
       md: '640px',
+      l: '852px',
+      xl: '980px',
+      xxl: '1200px',
     },
     colors: {
       gray: '#999',

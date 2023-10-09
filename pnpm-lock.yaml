@@ -10,8 +10,6 @@ specifiers:
   '@unocss/reset': ^0.56.4
   '@vitejs/plugin-react': ^4.0.3
   '@vitejs/plugin-react-swc': ^3.4.0
-  '@web3-react/core': ^8.2.3
-  '@web3-react/metamask': ^8.2.4
   ahooks: ^3.7.8
   antd: ^5.9.4
   clsx: ^2.0.0
@@ -22,6 +20,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-react-refresh: ^0.4.3
   less: ^4.2.0
+  lodash: ^4.17.21
   prettier: ^3.0.3
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -37,12 +36,11 @@ dependencies:
   '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/5.2.6_biqbaboplfbrettd7655fr4n2y
   '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/4.1.0_vite@4.4.9
   '@vitejs/plugin-react-swc': registry.npmmirror.com/@vitejs/plugin-react-swc/3.4.0_vite@4.4.9
-  '@web3-react/core': registry.npmmirror.com/@web3-react/core/8.2.3_cvi3schkfut2wuqsdvxrzfxug4
-  '@web3-react/metamask': registry.npmmirror.com/@web3-react/metamask/8.2.4_cvi3schkfut2wuqsdvxrzfxug4
   ahooks: registry.npmmirror.com/ahooks/3.7.8_react@18.2.0
   antd: registry.npmmirror.com/antd/5.9.4_biqbaboplfbrettd7655fr4n2y
   clsx: registry.npmmirror.com/clsx/2.0.0
   less: registry.npmmirror.com/less/4.2.0
+  lodash: registry.npmmirror.com/lodash/4.17.21
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
   react-router-dom: registry.npmmirror.com/react-router-dom/6.16.0_biqbaboplfbrettd7655fr4n2y
@@ -831,16 +829,6 @@ packages:
       '@ethersproject/bytes': registry.npmmirror.com/@ethersproject/bytes/5.7.0
     dev: false
 
-  registry.npmmirror.com/@ethersproject/basex/5.7.0:
-    resolution: {integrity: sha512-ywlh43GwZLv2Voc2gQVTKBoVQ1mti3d8HK5aMxsfu/nRDnMmNqaSJ3r3n85HBByT8OpoY96SXM1FogC533T4zw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/basex/-/basex-5.7.0.tgz}
-    name: '@ethersproject/basex'
-    version: 5.7.0
-    dependencies:
-      '@ethersproject/bytes': registry.npmmirror.com/@ethersproject/bytes/5.7.0
-      '@ethersproject/properties': registry.npmmirror.com/@ethersproject/properties/5.7.0
-    dev: false
-    optional: true
-
   registry.npmmirror.com/@ethersproject/bignumber/5.7.0:
     resolution: {integrity: sha512-n1CAdIHRWjSucQO3MC1zPSVgV/6dy/fjL9pMrPP9peL+QxEg9wOsVqwD4+818B6LUEtaXzVHQiuivzRoxPxUGw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/bignumber/-/bignumber-5.7.0.tgz}
     name: '@ethersproject/bignumber'
@@ -914,48 +902,6 @@ packages:
       '@ethersproject/logger': registry.npmmirror.com/@ethersproject/logger/5.7.0
     dev: false
 
-  registry.npmmirror.com/@ethersproject/providers/5.7.2:
-    resolution: {integrity: sha512-g34EWZ1WWAVgr4aptGlVBF8mhl3VWjv+8hoAnzStu8Ah22VHBsuGzP17eb6xDVRzw895G4W7vvx60lFFur/1Rg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/providers/-/providers-5.7.2.tgz}
-    name: '@ethersproject/providers'
-    version: 5.7.2
-    requiresBuild: true
-    dependencies:
-      '@ethersproject/abstract-provider': registry.npmmirror.com/@ethersproject/abstract-provider/5.7.0
-      '@ethersproject/abstract-signer': registry.npmmirror.com/@ethersproject/abstract-signer/5.7.0
-      '@ethersproject/address': registry.npmmirror.com/@ethersproject/address/5.7.0
-      '@ethersproject/base64': registry.npmmirror.com/@ethersproject/base64/5.7.0
-      '@ethersproject/basex': registry.npmmirror.com/@ethersproject/basex/5.7.0
-      '@ethersproject/bignumber': registry.npmmirror.com/@ethersproject/bignumber/5.7.0
-      '@ethersproject/bytes': registry.npmmirror.com/@ethersproject/bytes/5.7.0
-      '@ethersproject/constants': registry.npmmirror.com/@ethersproject/constants/5.7.0
-      '@ethersproject/hash': registry.npmmirror.com/@ethersproject/hash/5.7.0
-      '@ethersproject/logger': registry.npmmirror.com/@ethersproject/logger/5.7.0
-      '@ethersproject/networks': registry.npmmirror.com/@ethersproject/networks/5.7.1
-      '@ethersproject/properties': registry.npmmirror.com/@ethersproject/properties/5.7.0
-      '@ethersproject/random': registry.npmmirror.com/@ethersproject/random/5.7.0
-      '@ethersproject/rlp': registry.npmmirror.com/@ethersproject/rlp/5.7.0
-      '@ethersproject/sha2': registry.npmmirror.com/@ethersproject/sha2/5.7.0
-      '@ethersproject/strings': registry.npmmirror.com/@ethersproject/strings/5.7.0
-      '@ethersproject/transactions': registry.npmmirror.com/@ethersproject/transactions/5.7.0
-      '@ethersproject/web': registry.npmmirror.com/@ethersproject/web/5.7.1
-      bech32: registry.npmmirror.com/bech32/1.1.4
-      ws: registry.npmmirror.com/ws/7.4.6
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-    dev: false
-    optional: true
-
-  registry.npmmirror.com/@ethersproject/random/5.7.0:
-    resolution: {integrity: sha512-19WjScqRA8IIeWclFme75VMXSBvi4e6InrUNuaR4s5pTF2qNhcGdCUwdxUVGtDDqC00sDLCO93jPQoDUH4HVmQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/random/-/random-5.7.0.tgz}
-    name: '@ethersproject/random'
-    version: 5.7.0
-    dependencies:
-      '@ethersproject/bytes': registry.npmmirror.com/@ethersproject/bytes/5.7.0
-      '@ethersproject/logger': registry.npmmirror.com/@ethersproject/logger/5.7.0
-    dev: false
-    optional: true
-
   registry.npmmirror.com/@ethersproject/rlp/5.7.0:
     resolution: {integrity: sha512-rBxzX2vK8mVF7b0Tol44t5Tb8gomOHkj5guL+HhzQ1yBh/ydjGnpw6at+X6Iw0Kp3OzzzkcKp8N9r0W4kYSs9w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/rlp/-/rlp-5.7.0.tgz}
     name: '@ethersproject/rlp'
@@ -964,17 +910,6 @@ packages:
       '@ethersproject/bytes': registry.npmmirror.com/@ethersproject/bytes/5.7.0
       '@ethersproject/logger': registry.npmmirror.com/@ethersproject/logger/5.7.0
     dev: false
-
-  registry.npmmirror.com/@ethersproject/sha2/5.7.0:
-    resolution: {integrity: sha512-gKlH42riwb3KYp0reLsFTokByAKoJdgFCwI+CCiX/k+Jm2mbNs6oOaCjYQSlI1+XBVejwH2KrmCbMAT/GnRDQw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/sha2/-/sha2-5.7.0.tgz}
-    name: '@ethersproject/sha2'
-    version: 5.7.0
-    dependencies:
-      '@ethersproject/bytes': registry.npmmirror.com/@ethersproject/bytes/5.7.0
-      '@ethersproject/logger': registry.npmmirror.com/@ethersproject/logger/5.7.0
-      hash.js: registry.npmmirror.com/hash.js/1.1.7
-    dev: false
-    optional: true
 
   registry.npmmirror.com/@ethersproject/signing-key/5.7.0:
     resolution: {integrity: sha512-MZdy2nL3wO0u7gkB4nA/pEf8lu1TlFswPNmy8AiYkfKTdO6eXBJyUdmHO/ehm/htHw9K/qF8ujnTyUAD+Ry54Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ethersproject/signing-key/-/signing-key-5.7.0.tgz}
@@ -1111,13 +1046,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': registry.npmmirror.com/@jridgewell/resolve-uri/3.1.1
       '@jridgewell/sourcemap-codec': registry.npmmirror.com/@jridgewell/sourcemap-codec/1.4.15
-    dev: false
-
-  registry.npmmirror.com/@metamask/detect-provider/1.2.0:
-    resolution: {integrity: sha512-ocA76vt+8D0thgXZ7LxFPyqw3H7988qblgzddTDA6B8a/yU0uKV42QR/DhA+Jh11rJjxW0jKvwb5htA6krNZDQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@metamask/detect-provider/-/detect-provider-1.2.0.tgz}
-    name: '@metamask/detect-provider'
-    version: 1.2.0
-    engines: {node: '>= 10'}
     dev: false
 
   registry.npmmirror.com/@noble/curves/1.1.0:
@@ -1645,6 +1573,7 @@ packages:
     resolution: {integrity: sha512-FbtmBWCcSa2J4zL781Zf1p5YUBXQomPEcep9QZCfRfQgTxz3pJWiDFLebohZ9fFntX5ibzOkSsrJ0TEew8cAog==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prop-types/-/prop-types-15.7.7.tgz}
     name: '@types/prop-types'
     version: 15.7.7
+    dev: true
 
   registry.npmmirror.com/@types/react-dom/18.2.7:
     resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz}
@@ -1662,6 +1591,7 @@ packages:
       '@types/prop-types': registry.npmmirror.com/@types/prop-types/15.7.7
       '@types/scheduler': registry.npmmirror.com/@types/scheduler/0.16.4
       csstype: registry.npmmirror.com/csstype/3.1.2
+    dev: true
 
   registry.npmmirror.com/@types/responselike/1.0.1:
     resolution: {integrity: sha512-TiGnitEDxj2X0j+98Eqk5lv/Cij8oHd32bU4D/Yw6AOq7vvTk0gSD2GPj0G/HkvhMoVsdlhYF4yqqlyPBTM6Sg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/responselike/-/responselike-1.0.1.tgz}
@@ -1675,6 +1605,7 @@ packages:
     resolution: {integrity: sha512-2L9ifAGl7wmXwP4v3pN4p2FLhD0O1qsJpvKmNin5VA8+UvNVb447UDaAEV6UdrkA+m/Xs58U1RFps44x6TFsVQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/scheduler/-/scheduler-0.16.4.tgz}
     name: '@types/scheduler'
     version: 0.16.4
+    dev: true
 
   registry.npmmirror.com/@types/secp256k1/4.0.4:
     resolution: {integrity: sha512-oN0PFsYxDZnX/qSJ5S5OwaEDTYfekhvaM5vqui2bu1AA39pKofmgL104Q29KiOXizXS2yLjSzc5YdTyMKdcy4A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/secp256k1/-/secp256k1-4.0.4.tgz}
@@ -2129,69 +2060,6 @@ packages:
       - supports-color
     dev: false
 
-  registry.npmmirror.com/@web3-react/core/8.2.3_cvi3schkfut2wuqsdvxrzfxug4:
-    resolution: {integrity: sha512-0ezmRKhqQpoa9ct2/3erg60zBXfC/f/liYR1mfSGKtIroRkLnPARigZSV6pI+fi8bhfGJ0RKtFWyTCCWZzdq1w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@web3-react/core/-/core-8.2.3.tgz}
-    id: registry.npmmirror.com/@web3-react/core/8.2.3
-    name: '@web3-react/core'
-    version: 8.2.3
-    peerDependencies:
-      react: '>=16.8'
-    dependencies:
-      '@web3-react/store': registry.npmmirror.com/@web3-react/store/8.2.3_cvi3schkfut2wuqsdvxrzfxug4
-      '@web3-react/types': registry.npmmirror.com/@web3-react/types/8.2.3_cvi3schkfut2wuqsdvxrzfxug4
-      react: registry.npmmirror.com/react/18.2.0
-      zustand: registry.npmmirror.com/zustand/4.4.0_cvi3schkfut2wuqsdvxrzfxug4
-    optionalDependencies:
-      '@ethersproject/providers': registry.npmmirror.com/@ethersproject/providers/5.7.2
-    transitivePeerDependencies:
-      - '@types/react'
-      - bufferutil
-      - immer
-      - utf-8-validate
-    dev: false
-
-  registry.npmmirror.com/@web3-react/metamask/8.2.4_cvi3schkfut2wuqsdvxrzfxug4:
-    resolution: {integrity: sha512-4yoqDgvcB0QKUGSk00/fUipA3z5rOXcQYAwE0CABPa5lbTRAIm5i8F0Gj8UW7QO0pQus4UtjX0+JxWdclB7UrA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@web3-react/metamask/-/metamask-8.2.4.tgz}
-    id: registry.npmmirror.com/@web3-react/metamask/8.2.4
-    name: '@web3-react/metamask'
-    version: 8.2.4
-    dependencies:
-      '@metamask/detect-provider': registry.npmmirror.com/@metamask/detect-provider/1.2.0
-      '@web3-react/types': registry.npmmirror.com/@web3-react/types/8.2.3_cvi3schkfut2wuqsdvxrzfxug4
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
-      - react
-    dev: false
-
-  registry.npmmirror.com/@web3-react/store/8.2.3_cvi3schkfut2wuqsdvxrzfxug4:
-    resolution: {integrity: sha512-qUJQ5pDsYYDra+/+glq2BmIS43HYAiEZ22sLLVh6E75WiZKRNOOqUxBDPe33KTIn718DLt51j+wd2FT+oT/kJQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@web3-react/store/-/store-8.2.3.tgz}
-    id: registry.npmmirror.com/@web3-react/store/8.2.3
-    name: '@web3-react/store'
-    version: 8.2.3
-    dependencies:
-      '@ethersproject/address': registry.npmmirror.com/@ethersproject/address/5.7.0
-      '@web3-react/types': registry.npmmirror.com/@web3-react/types/8.2.3_cvi3schkfut2wuqsdvxrzfxug4
-      zustand: registry.npmmirror.com/zustand/4.4.0_cvi3schkfut2wuqsdvxrzfxug4
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
-      - react
-    dev: false
-
-  registry.npmmirror.com/@web3-react/types/8.2.3_cvi3schkfut2wuqsdvxrzfxug4:
-    resolution: {integrity: sha512-kSG90QkN+n7IOtp10nQ44oS8J7jzfH9EmqnruwBpCGybh1FM/ohyRvUKWYZNfNE4wsjTSpKsINR0/VdDsZMHyg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@web3-react/types/-/types-8.2.3.tgz}
-    id: registry.npmmirror.com/@web3-react/types/8.2.3
-    name: '@web3-react/types'
-    version: 8.2.3
-    dependencies:
-      zustand: registry.npmmirror.com/zustand/4.4.0_cvi3schkfut2wuqsdvxrzfxug4
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
-      - react
-    dev: false
-
   registry.npmmirror.com/abortcontroller-polyfill/1.7.5:
     resolution: {integrity: sha512-JMJ5soJWP18htbbxJjG7bG6yuI6pRhgJ0scHHTfkUjf6wjP912xZWvM+A4sJK3gqd9E8fcPbDnOefbA9Th/FIQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.5.tgz}
     name: abortcontroller-polyfill
@@ -2569,13 +2437,6 @@ packages:
     dependencies:
       tweetnacl: registry.npmmirror.com/tweetnacl/0.14.5
     dev: false
-
-  registry.npmmirror.com/bech32/1.1.4:
-    resolution: {integrity: sha512-s0IrSOzLlbvX7yp4WBfPITzpAU8sqQcpsmwXDiKwrG4r491vwCO/XpejasRNl0piBMe/DvP4Tz0mIS/X1DPJBQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bech32/-/bech32-1.1.4.tgz}
-    name: bech32
-    version: 1.1.4
-    dev: false
-    optional: true
 
   registry.npmmirror.com/big-integer/1.6.51:
     resolution: {integrity: sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/big-integer/-/big-integer-1.6.51.tgz}
@@ -8363,17 +8224,6 @@ packages:
       qs: registry.npmmirror.com/qs/6.11.2
     dev: true
 
-  registry.npmmirror.com/use-sync-external-store/1.2.0_react@18.2.0:
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz}
-    id: registry.npmmirror.com/use-sync-external-store/1.2.0
-    name: use-sync-external-store
-    version: 1.2.0
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: registry.npmmirror.com/react/18.2.0
-    dev: false
-
   registry.npmmirror.com/utf-8-validate/5.0.10:
     resolution: {integrity: sha512-Z6czzLq4u8fPOyx7TU6X3dvUZVvoJmxSQ+IcrlmagKhilxlhZgxPK6C5Jqbkw1IDUmFTM+cz9QDnnLTwDz/2gQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/utf-8-validate/-/utf-8-validate-5.0.10.tgz}
     name: utf-8-validate
@@ -8960,22 +8810,6 @@ packages:
       ultron: registry.npmmirror.com/ultron/1.1.1
     dev: false
 
-  registry.npmmirror.com/ws/7.4.6:
-    resolution: {integrity: sha512-YmhHDO4MzaDLB+M9ym/mDA5z0naX8j7SIlT8f8z+I0VtzsRbekxEutHSme7NPS2qE8StCYQNUnfWdXta/Yu85A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ws/-/ws-7.4.6.tgz}
-    name: ws
-    version: 7.4.6
-    engines: {node: '>=8.3.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-    dev: false
-    optional: true
-
   registry.npmmirror.com/xhr-request-promise/0.1.3:
     resolution: {integrity: sha512-YUBytBsuwgitWtdRzXDDkWAXzhdGB8bYm0sSzMPZT7Z2MBjMSTHFsyCT1yCRATY+XC69DUrQraRAEgcoCRaIPg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/xhr-request-promise/-/xhr-request-promise-0.1.3.tgz}
     name: xhr-request-promise
@@ -9039,26 +8873,3 @@ packages:
     name: yocto-queue
     version: 0.1.0
     engines: {node: '>=10'}
-
-  registry.npmmirror.com/zustand/4.4.0_cvi3schkfut2wuqsdvxrzfxug4:
-    resolution: {integrity: sha512-2dq6wq4dSxbiPTamGar0NlIG/av0wpyWZJGeQYtUOLegIUvhM2Bf86ekPlmgpUtS5uR7HyetSiktYrGsdsyZgQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/zustand/-/zustand-4.4.0.tgz}
-    id: registry.npmmirror.com/zustand/4.4.0
-    name: zustand
-    version: 4.4.0
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@types/react': '>=16.8'
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      '@types/react': registry.npmmirror.com/@types/react/18.2.23
-      react: registry.npmmirror.com/react/18.2.0
-      use-sync-external-store: registry.npmmirror.com/use-sync-external-store/1.2.0_react@18.2.0
-    dev: false

@@ -95,42 +95,77 @@ a:hover {
 
 
 .btn {
-  width: 140px;
-  height: 40px;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .cell {
-  @apply flex-auto;
+  @apply flex-auto break-all;
 
   & p:nth-child(1) {
-    @apply text-[#999] text-[12px];
+    @apply text-[#999] text-[12px] leading-[14px];
   }
 
   & p:nth-child(2) {
-    @apply font-m leading-[16px];
+    @apply font-m text-[14px] leading-[16px];
   }
 }
 
-.col:not(:last-child) {
-  position: relative;
-  &::after {
-    content: '';
-    position: absolute;
-    width: 1px;
-    height: 20px;
-    background: #D9D9D9;
-    right: 20%;
-    top: 50%;
-    transform: translateY(-50%);
+.col {
+  @media screen and (max-width:640px) {
+    padding: 20px;
+    border: 1px solid #333;
   }
 }
+
+// .col:not(:last-child) {
+//   position: relative;
+
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     width: 1px;
+//     height: 20px;
+//     background: #D9D9D9;
+//     right: 20%;
+//     top: 50%;
+//     transform: translateY(-50%);
+//   }
+// }
 
 .pointer {
   cursor: pointer;
 }
 
 .address-dropdown-box {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  & li {
+    padding: 12px 18px !important;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
   .ant-dropdown-menu-submenu .ant-dropdown-menu {
     border-radius: 2px;
+    padding: 24px 18px;
+  }
+}
+
+.contractAddress {
+  @media screen and (max-width:1200px) and (min-width:640px) {
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @media screen and (max-width:640px) {
+    max-width: 344px;
+    word-break: break-all;
   }
 }
