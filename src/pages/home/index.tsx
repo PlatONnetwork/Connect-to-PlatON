@@ -10,8 +10,8 @@ import { useLang } from '@/context/LangProvider'
 
 const Home = () => {
   const { t, i18n } = useTranslation()
+  const [open, setOpen] = useState(false)
   const lang = useLang()
-
   const [address, setAddress] = useState('')
 
   const changeLang = lang => {
@@ -29,18 +29,10 @@ const Home = () => {
 
   const isMobile = useMemo(() => clientWidth <= 640, [clientWidth])
 
-  console.log('isMobile', isMobile)
-
   const connect = async () => {
     const [addr] = await myWeb3.connectWallet()
     addr && setAddress(addr)
   }
-
-  useEffect(() => {
-    console.log('进入两次')
-
-    !address && connect()
-  }, [])
 
   const items: MenuProps['items'] = [
     {
@@ -108,7 +100,7 @@ const Home = () => {
               </Dropdown>
             </ConfigProvider>
           ) : (
-            <div className="flex-center px-[20px] gap-[8px]" onClick={connect}>
+            <div className="flex-center px-[20px] gap-[8px]" onClick={() => setOpen(true)}>
               {t('home.connectWallet')}
             </div>
           )}
@@ -198,7 +190,7 @@ const Home = () => {
                           </Col>
                           <Col span={isMobile ? 24 : 6} className="flex justify-end">
                             <div
-                              className="btn b-btn lt-md:important-w-full"
+                              className="btn b-btn lt-md:important-w-full shrink-0"
                               onClick={() => {
                                 addToken(item, i)
                               }}
@@ -215,6 +207,7 @@ const Home = () => {
           )
         })}
       </div>
+      <Connector open={open} setOpen={setOpen} />
     </div>
   )
 }
