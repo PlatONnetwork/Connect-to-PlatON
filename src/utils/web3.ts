@@ -1,18 +1,23 @@
 import Web3 from 'web3'
 import { NETWORK, TOKEN } from '@/config/type'
+import i18n from '@/i18n'
+import { message } from 'antd'
 
 class web3Class {
   public web3: any
   public provider: any
   constructor() {
     if (!window.ethereum) {
-      alert('Please install wallet')
+      console.log(i18n.t('home.noWallet'))
     }
     this.provider = window.ethereum
     this.web3 = new Web3(this.provider)
   }
 
-  connectWallet = () => this.provider.request({ method: 'eth_requestAccounts' })
+  connectWallet = () => {
+    if (!this.provider) message.warning(i18n.t('home.noWallet'))
+    else return this.provider.request({ method: 'eth_requestAccounts' })
+  }
 
   getChianId = () => this.provider.request({ method: 'eth_chainId' })
 

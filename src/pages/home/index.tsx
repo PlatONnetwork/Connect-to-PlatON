@@ -5,9 +5,25 @@ import metamask from '@/assets/img/metamask.png'
 import { NETWORK, TOKEN } from '@/config/type'
 import errorHandler from '@/utils/errorHandler'
 import useClientSize from '@/hooks/useClientSize'
+import { useTranslation } from 'react-i18next'
+import { useLang } from '@/context/LangProvider'
 
 const Home = () => {
+  const { t, i18n } = useTranslation()
+  const lang = useLang()
+
   const [address, setAddress] = useState('')
+
+  const changeLang = lang => {
+    i18n.changeLanguage(lang)
+    localStorage.setItem('langToken', lang)
+  }
+
+  useEffect(() => {
+    if (lang !== localStorage.getItem('langToken')) {
+      changeLang(lang)
+    }
+  }, [lang])
 
   const { clientWidth } = useClientSize()
 
@@ -21,6 +37,8 @@ const Home = () => {
   }
 
   useEffect(() => {
+    console.log('进入两次')
+
     !address && connect()
   }, [])
 
@@ -39,7 +57,7 @@ const Home = () => {
     try {
       if (!address) await connect()
       await myWeb3.switchNetwork(network)
-      message.success('')
+      message.success(t('home.addSuccess'))
     } catch (error) {
       errorHandler(error)
       console.log('error:', error)
@@ -52,7 +70,7 @@ const Home = () => {
       const chainId = await myWeb3.getChianId()
       if (network.chainId !== chainId) await myWeb3.switchNetwork(network)
       await myWeb3.addToken(token)
-      message.success('')
+      message.success(t('home.addSuccess'))
     } catch (error) {
       errorHandler(error)
       console.log('error:', error)
@@ -63,10 +81,10 @@ const Home = () => {
     <div className="flex flex-col ">
       <div className="flex-between lt-md:flex-col">
         <div className="flex flex-col gap-[12px] lt-md:mt-[24px]">
-          <p className="font-b text-[24px] leading-[24px]">Connect to PlatON</p>
-          <p className="text-[#999] text-[14px] leading-[14px]">
-            After connecting your wallet, you can quickly add the PlatON network and tokens to your wallet.
+          <p onClick={() => changeLang('zh')} className="font-b text-[24px] leading-[24px]">
+            {t('home.connectTo')} PlatON
           </p>
+          <p className="text-[#999] text-[14px] leading-[14px]">{t('home.slogan')}</p>
         </div>
         <div className="h-[40px] leading-[40px] pointer b-btn w-auto lt-md:w-full lt-md:mt-[16px]">
           {address ? (
@@ -90,7 +108,9 @@ const Home = () => {
               </Dropdown>
             </ConfigProvider>
           ) : (
-            <div className="flex-center px-[20px] gap-[8px]" onClick={connect}>{`Connect Wallet`}</div>
+            <div className="flex-center px-[20px] gap-[8px]" onClick={connect}>
+              {t('home.connectWallet')}
+            </div>
           )}
         </div>
       </div>
@@ -107,35 +127,35 @@ const Home = () => {
                   ''
                 ) : (
                   <div className="btn w-btn" onClick={() => addNetwork(item)}>
-                    Add to Wallet
+                    {t('home.addToWallet')}
                   </div>
                 )}
               </div>
               <div className="flex-col">
                 <div className="b-base w-full flex px-[40px] py-[20px] mb-[20px] lt-xxl:flex-wrap lt-md:p-0">
                   <div className="cell col">
-                    <p>ChainID</p>
+                    <p>{t('home.chainId')}</p>
                     <p>{item.chainId}</p>
                   </div>
                   <div className="cell col">
-                    <p>Currency</p>
+                    <p>{t('home.currency')}</p>
                     <p>{item.currency}</p>
                   </div>
                   <div className="cell col">
-                    <p>RPC URL</p>
+                    <p>{t('home.rpc')}</p>
                     <a href={item.rpc} target="_blank" rel="nofollow noopener noreferrer">
                       {item.rpc}
                     </a>
                   </div>
                   <div className="cell col">
-                    <p>Block Explorer URL</p>
+                    <p>{t('home.explorer')}</p>
                     <a href={item.explorer} target="_blank" rel="nofollow noopener noreferrer">
                       {item.explorer}
                     </a>
                   </div>
                   {item.faucet && (
                     <div className="cell col">
-                      <p>Faucet</p>
+                      <p>{t('home.faucet')}</p>
                       <a href={item.faucet} target="_blank" rel="nofollow noopener noreferrer">
                         {item.faucet}
                       </a>
@@ -144,7 +164,7 @@ const Home = () => {
                 </div>
                 {isMobile ? (
                   <div className="btn w-btn important-w-full mb-[30px]" onClick={() => addNetwork(item)}>
-                    Add to Wallet
+                    {t('home.addToWallet')}
                   </div>
                 ) : (
                   ''
@@ -162,7 +182,7 @@ const Home = () => {
                             <p className="whitespace-nowrap font-b text-[20px]">{i.label}</p>
                           </Col>
                           <Col span={isMobile ? 24 : 10} className="cell">
-                            <p>Contract Address</p>
+                            <p>{t('home.contractAddress')}</p>
                             <p
                               onClick={() => {
                                 copyFn(i.contractAddress)
@@ -173,7 +193,7 @@ const Home = () => {
                             </p>
                           </Col>
                           <Col span={isMobile ? 24 : 2} className="cell min-w-[200px]">
-                            <p>Decimal</p>
+                            <p>{t('home.decimal')}</p>
                             <p>{i.decimal}</p>
                           </Col>
                           <Col span={isMobile ? 24 : 6} className="flex justify-end">
@@ -183,7 +203,7 @@ const Home = () => {
                                 addToken(item, i)
                               }}
                             >
-                              Add to Wallet
+                              {t('home.addToWallet')}
                             </div>
                           </Col>
                         </div>
