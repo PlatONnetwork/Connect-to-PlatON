@@ -6,13 +6,14 @@ import { NETWORK, TOKEN } from '@/config/type'
 import errorHandler from '@/utils/errorHandler'
 import useClientSize from '@/hooks/useClientSize'
 import { useTranslation } from 'react-i18next'
-import { useLang } from '@/context/LangProvider'
+import { useGlobal } from '@/context/GlobalProvider'
 
 const Home = () => {
   const { t, i18n } = useTranslation()
   const [open, setOpen] = useState(false)
-  const lang = useLang()
-  const [address, setAddress] = useState('')
+  const { lang, address, setAddress } = useGlobal()
+  const { clientWidth } = useClientSize()
+  const isMobile = useMemo(() => clientWidth <= 640, [clientWidth])
 
   const changeLang = lang => {
     i18n.changeLanguage(lang)
@@ -25,15 +26,6 @@ const Home = () => {
     }
   }, [lang])
 
-  const { clientWidth } = useClientSize()
-
-  const isMobile = useMemo(() => clientWidth <= 640, [clientWidth])
-
-  const connect = async () => {
-    const [addr] = await myWeb3.connectWallet()
-    addr && setAddress(addr)
-  }
-
   const items: MenuProps['items'] = [
     {
       label: <div onClick={() => copyFn(address)}>Copy Address</div>,
@@ -44,7 +36,10 @@ const Home = () => {
       key: '1',
     },
   ]
-
+  const connect = async () => {
+    const [addr] = await myWeb3.connectWallet()
+    addr && setAddress(addr)
+  }
   const addNetwork = async (network: NETWORK) => {
     try {
       if (!address) await connect()
@@ -73,9 +68,7 @@ const Home = () => {
     <div className="flex flex-col ">
       <div className="flex-between lt-md:flex-col">
         <div className="flex flex-col gap-[12px] lt-md:mt-[24px]">
-          <p onClick={() => changeLang('zh')} className="font-b text-[24px] leading-[24px]">
-            {t('home.connectTo')} PlatON
-          </p>
+          <p className="font-b text-[24px] leading-[24px]">{t('home.connectTo')} PlatON</p>
           <p className="text-[#999] text-[14px] leading-[14px]">{t('home.slogan')}</p>
         </div>
         <div className="h-[40px] leading-[40px] pointer b-btn w-auto lt-md:w-full lt-md:mt-[16px]">
@@ -207,7 +200,7 @@ const Home = () => {
           )
         })}
       </div>
-      <Connector open={open} setOpen={setOpen} />
+      <Connector open={open} setOpen={setOpen} connect={connect} />
     </div>
   )
 }

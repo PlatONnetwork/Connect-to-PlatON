@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-const LangContext = createContext<any>([])
+const GlobalContext = createContext<any>([])
 
-const LangProvider = ({ children }: { children: any }) => {
+const GlobalProvider = ({ children }: { children: any }) => {
+  const [address, setAddress] = useState('')
   const [lang, setLang] = useState(localStorage.getItem('langToken' || 'en'))
 
   const setLangToken = event => {
@@ -17,10 +18,15 @@ const LangProvider = ({ children }: { children: any }) => {
       window.removeEventListener('message', setLangToken)
     }
   }, [])
+  const value = {
+    lang,
+    address,
+    setAddress,
+  }
 
-  return <LangContext.Provider value={lang}>{children}</LangContext.Provider>
+  return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
 }
 
-const useLang = () => useContext(LangContext)
+const useGlobal = () => useContext(GlobalContext)
 
-export { LangContext, LangProvider, useLang }
+export { GlobalContext, GlobalProvider, useGlobal }

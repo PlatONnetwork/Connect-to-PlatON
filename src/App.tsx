@@ -1,14 +1,14 @@
 import { Suspense } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import router from '@/router'
-import { LangProvider } from '@/context/LangProvider'
+import { GlobalProvider } from '@/context/GlobalProvider'
 
 export default function App() {
   return (
     <Suspense fallback={<>...</>}>
-      <LangProvider>
+      <GlobalProvider>
         <RouterProvider router={router}></RouterProvider>
-      </LangProvider>
+      </GlobalProvider>
     </Suspense>
   )
 }

@@ -2,6 +2,7 @@ import Web3 from 'web3'
 import { NETWORK, TOKEN } from '@/config/type'
 import i18n from '@/i18n'
 import { message } from 'antd'
+import { isIOS } from '@/utils/index'
 
 class web3Class {
   public web3: any
@@ -15,7 +16,11 @@ class web3Class {
   }
 
   connectWallet = () => {
-    if (!this.provider) message.warning(i18n.t('home.noWallet'))
+    // alert(window.ethereum.isMetaMask)
+
+    if (!this.provider) return message.warning(i18n.t('home.noWallet'))
+    // 是否在ios下的移动端, 请打开对应的app?
+    else if (isIOS && !window?.ethereum?.isMetaMask) return message.warning('use app ')
     else return this.provider.request({ method: 'eth_requestAccounts' })
   }
 

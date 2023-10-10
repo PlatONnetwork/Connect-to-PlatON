@@ -4,18 +4,16 @@ import metamaskWallet from '@/assets/img/metamaskWallet.png'
 
 const Connector = (props: any) => {
   const { t } = useTranslation()
-  const { open, setOpen } = props
-
-  console.log('open', open)
+  const { open, setOpen, connect } = props
 
   const walletList = [
     {
       id: 0,
       label: 'METAMASK',
       icon: metamaskWallet,
+      connect,
     },
   ]
-
   return (
     <ConfigProvider
       theme={{
@@ -32,7 +30,14 @@ const Connector = (props: any) => {
         <ul className="flex-center gap-[12px] my-[60px]">
           {walletList.map(item => {
             return (
-              <li key={item.id} className="w-[250px] h-[64px] pointer bg-[#000] flex-center rounded-[30px]">
+              <li
+                onClick={() => {
+                  item.connect()
+                  setOpen(false)
+                }}
+                key={item.id}
+                className="w-[250px] h-[64px] pointer bg-[#000] flex-center rounded-[30px]"
+              >
                 <img src={item.icon} alt="" />
               </li>
             )
