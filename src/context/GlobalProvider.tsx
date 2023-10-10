@@ -7,6 +7,7 @@ const GlobalProvider = ({ children }: { children: any }) => {
   const [lang, setLang] = useState(localStorage.getItem('langToken' || 'en'))
 
   const setLangToken = event => {
+    console.log('event', event)
     if (event && event?.origin === 'https://scan.platon.network/') {
       setLang(event.data)
     }
