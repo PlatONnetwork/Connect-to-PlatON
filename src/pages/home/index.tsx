@@ -43,7 +43,6 @@ const Home = () => {
   const addNetwork = async (network: NETWORK) => {
     try {
       if (!address) await connect()
-      message.success('finish connect')
       await myWeb3.switchNetwork(network)
       message.success(t('home.addSuccess'))
     } catch (error) {
