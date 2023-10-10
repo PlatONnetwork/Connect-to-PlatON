@@ -27,6 +27,8 @@ class web3Class {
   getChianId = () => this.provider.request({ method: 'eth_chainId' })
 
   switchNetwork = async (network: NETWORK) => {
+    console.log('network', network)
+
     return new Promise(async (resolve, reject) => {
       const switch_data = {
         method: 'wallet_switchEthereumChain',
@@ -38,13 +40,13 @@ class web3Class {
           {
             chainName: network.network,
             chainId: `0x${Number(network.chainId).toString(16)}`,
-            rpcUrls: network.rpc,
+            rpcUrls: [network.rpc],
             nativeCurrency: {
               name: network.currency,
               symbol: network.currency,
               decimals: network.decimal,
             },
-            blockExplorerUrls: [import.meta.env.VITE_EXPLORER_URL],
+            blockExplorerUrls: [network.explorer],
           },
         ],
       }
