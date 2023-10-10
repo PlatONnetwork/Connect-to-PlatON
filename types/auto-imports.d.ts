@@ -8,6 +8,7 @@ declare global {
   const Connect: typeof import('../src/components/Connector')['default']
   const Connector: typeof import('../src/components/Connector')['default']
   const Link: typeof import('react-router-dom')['Link']
+  const Loading: typeof import('../src/components/Loading')['default']
   const NavLink: typeof import('react-router-dom')['NavLink']
   const Navigate: typeof import('react-router-dom')['Navigate']
   const Outlet: typeof import('react-router-dom')['Outlet']
