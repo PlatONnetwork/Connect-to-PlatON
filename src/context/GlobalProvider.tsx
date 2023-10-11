@@ -8,7 +8,9 @@ const GlobalProvider = ({ children }: { children: any }) => {
 
   const setLangToken = event => {
     console.log('event', event)
-    if (event && event?.origin === 'https://scan.platon.network/') {
+    console.log('VITE_ORIGIN_URL', import.meta.env.VITE_ORIGIN_URL)
+
+    if (event && event?.origin === import.meta.env.VITE_ORIGIN_URL && ['zh', 'en'].includes(event.data)) {
       setLang(event.data)
     }
   }

@@ -32,6 +32,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['clsx', 'react', 'react-dom', 'react-router-dom'],
   },
+  build: {
+    sourcemap: true,
+  },
   // define: {
   //   global: 'globalThis',
   // },
