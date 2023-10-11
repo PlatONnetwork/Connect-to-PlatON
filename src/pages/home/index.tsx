@@ -21,6 +21,7 @@ const Home = () => {
   }
 
   useEffect(() => {
+    console.log('lang has changed?', lang, localStorage.getItem('langToken'))
     if (lang !== localStorage.getItem('langToken')) {
       changeLang(lang)
     }
@@ -47,7 +48,6 @@ const Home = () => {
       message.success(t('home.addSuccess'))
     } catch (error) {
       errorHandler(error)
-      console.log('error:', error)
     }
   }
 
@@ -60,7 +60,6 @@ const Home = () => {
       message.success(t('home.addSuccess'))
     } catch (error) {
       errorHandler(error)
-      console.log('error:', error)
     }
   }
 

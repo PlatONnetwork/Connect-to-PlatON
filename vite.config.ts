@@ -33,7 +33,7 @@ export default defineConfig({
     include: ['clsx', 'react', 'react-dom', 'react-router-dom'],
   },
   build: {
-    sourcemap: true,
+    sourcemap: false,
   },
   // define: {
   //   global: 'globalThis',

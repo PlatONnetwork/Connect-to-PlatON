@@ -4,13 +4,11 @@ const GlobalContext = createContext<any>([])
 
 const GlobalProvider = ({ children }: { children: any }) => {
   const [address, setAddress] = useState('')
-  const [lang, setLang] = useState(localStorage.getItem('langToken' || 'en'))
+  const [lang, setLang] = useState(localStorage.getItem('langToken') || 'en')
 
   const setLangToken = event => {
     console.log('event', event)
-    console.log('VITE_ORIGIN_URL', import.meta.env.VITE_ORIGIN_URL)
-
-    if (event && event?.origin === import.meta.env.VITE_ORIGIN_URL && ['zh', 'en'].includes(event.data)) {
+    if (event && event?.origin == import.meta.env.VITE_ORIGIN_URL && ['zh', 'en'].includes(event.data)) {
       setLang(event.data)
     }
   }
