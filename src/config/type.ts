@@ -9,6 +9,7 @@ export type NETWORK = {
   faucet?: string
   tokens: TOKEN[]
   decimal: number
+  currencyLabel: string
 }
 
 export type TOKEN = {

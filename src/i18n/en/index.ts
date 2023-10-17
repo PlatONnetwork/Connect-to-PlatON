@@ -14,5 +14,6 @@ export default {
     noWallet: 'The wallet plug-in is not installed yet!',
     faucet: 'Faucet',
     explorer: 'Block explorer URL',
+    plzInMeta: 'Please open this page in MetalMask!',
   },
 }

@@ -22,6 +22,7 @@ declare global {
   const formatAddress: typeof import('../src/utils/index')['formatAddress']
   const forwardRef: typeof import('react')['forwardRef']
   const getAddress: typeof import('../src/utils/index')['getAddress']
+  const isAndroid: typeof import('../src/utils/index')['isAndroid']
   const isIOS: typeof import('../src/utils/index')['isIOS']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']

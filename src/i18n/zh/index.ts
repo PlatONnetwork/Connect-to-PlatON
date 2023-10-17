@@ -14,5 +14,6 @@ export default {
     noWallet: '暂未安装该插件!',
     faucet: '水龙头',
     explorer: '浏览器地址',
+    plzInMeta: '请在MetaMask中打开该页面!',
   },
 }

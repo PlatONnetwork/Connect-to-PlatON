@@ -21,11 +21,15 @@ const Home = () => {
   }
 
   useEffect(() => {
-    console.log('lang has changed?', lang, localStorage.getItem('langToken'))
     if (lang !== localStorage.getItem('langToken')) {
       changeLang(lang)
     }
   }, [lang])
+
+  useEffect(() => {
+    // 在metamask 移动端内才自动连接
+    isMobile && myWeb3?.provider?.isMetaMask && connect()
+  }, [])
 
   const items: MenuProps['items'] = [
     {
@@ -123,7 +127,7 @@ const Home = () => {
                   </div>
                   <div className="cell col">
                     <p>{t('home.currency')}</p>
-                    <p>{item.currency}</p>
+                    <p>{item.currencyLabel}</p>
                   </div>
                   <div className="cell col">
                     <p>{t('home.rpc')}</p>

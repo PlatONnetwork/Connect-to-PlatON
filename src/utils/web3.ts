@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import { NETWORK, TOKEN } from '@/config/type'
 import i18n from '@/i18n'
 import { message } from 'antd'
-import { isIOS } from '@/utils/index'
+import { isIOS, isAndroid } from '@/utils/index'
 
 class web3Class {
   public web3: any
@@ -16,12 +16,12 @@ class web3Class {
   }
 
   connectWallet = () => {
-    // alert(window.ethereum.isMetaMask)
-
-    if (!this.provider) return message.warning(i18n.t('home.noWallet'))
-    // 是否在ios下的移动端, 请打开对应的app?
-    else if (isIOS && !window?.ethereum?.isMetaMask) return message.warning('use app ')
-    else return this.provider.request({ method: 'eth_requestAccounts' })
+    const isMobile = document.documentElement.clientWidth < 640
+    if (isMobile && isIOS() && !this.provider) {
+      return message.warning(`${i18n.t('home.plzInMeta')}`)
+    } else if (isMobile && isAndroid() && !this.provider) {
+      window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/'
+    } else return this.provider.request({ method: 'eth_requestAccounts' })
   }
 
   getChianId = () => this.provider.request({ method: 'eth_chainId' })
