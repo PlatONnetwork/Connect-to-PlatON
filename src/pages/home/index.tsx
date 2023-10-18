@@ -41,6 +41,7 @@ const Home = () => {
       key: '1',
     },
   ]
+
   const connect = async () => {
     if (isMobile && !window.ethereum)
       return (window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/')
