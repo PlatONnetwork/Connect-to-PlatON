@@ -131,9 +131,7 @@ const Home = () => {
                   </div>
                   <div className="cell col">
                     <p>{t('home.rpc')}</p>
-                    <a href={item.rpc} target="_blank" rel="nofollow noopener noreferrer">
-                      {item.rpc}
-                    </a>
+                    <p>{item.rpc}</p>
                   </div>
                   <div className="cell col">
                     <p>{t('home.explorer')}</p>

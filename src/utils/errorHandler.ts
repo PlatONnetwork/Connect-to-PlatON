@@ -16,7 +16,6 @@ const EXCEPTION_MAP = {
 }
 
 const errorHandler = error => {
-  console.log(error)
   let errMessage
   if (error.code) {
     errMessage = EXCEPTION_MAP[error.code]

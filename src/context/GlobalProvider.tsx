@@ -7,7 +7,6 @@ const GlobalProvider = ({ children }: { children: any }) => {
   const [lang, setLang] = useState(localStorage.getItem('langToken') || 'en')
 
   const setLangToken = event => {
-    console.log('event', event)
     if (event && event?.origin == import.meta.env.VITE_ORIGIN_URL && ['zh', 'en'].includes(event.data)) {
       setLang(event.data)
     }
