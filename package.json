@@ -25,7 +25,6 @@
     "react-router-dom": "^6.16.0",
     "unocss": "^0.56.4",
     "unplugin-auto-import": "^0.16.6",
-    "web3": "^1.8.0"
   },
   "devDependencies": {
     "@types/node": "^20.7.0",

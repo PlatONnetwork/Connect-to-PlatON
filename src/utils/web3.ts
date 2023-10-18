@@ -1,16 +1,13 @@
-import Web3 from 'web3'
 import { NETWORK, TOKEN } from '@/config/type'
 import i18n from '@/i18n'
 
 class web3Class {
-  public web3: any
   public provider: any
   constructor() {
     if (!window.ethereum) {
       console.log(i18n.t('home.noWallet'))
     }
     this.provider = window.ethereum
-    this.web3 = new Web3(this.provider)
   }
 
   connectWallet = () => this.provider.request({ method: 'eth_requestAccounts' })
