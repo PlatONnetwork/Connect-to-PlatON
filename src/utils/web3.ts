@@ -1,8 +1,6 @@
 import Web3 from 'web3'
 import { NETWORK, TOKEN } from '@/config/type'
 import i18n from '@/i18n'
-import { message } from 'antd'
-import { isIOS, isAndroid } from '@/utils/index'
 
 class web3Class {
   public web3: any

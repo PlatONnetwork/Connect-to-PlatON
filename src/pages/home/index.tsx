@@ -28,9 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     // 在metamask 移动端内才自动连接
-    if (isMobile && window.ethereum) connect()
-    else if (isMobile && !window.ethereum)
-      window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/'
+    isMobile && window.ethereum && connect()
   }, [])
 
   const items: MenuProps['items'] = [
@@ -44,6 +42,8 @@ const Home = () => {
     },
   ]
   const connect = async () => {
+    if (isMobile && !window.ethereum)
+      return (window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/')
     const [addr] = await myWeb3.connectWallet()
     addr && setAddress(addr)
   }
