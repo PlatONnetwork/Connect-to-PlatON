@@ -28,7 +28,9 @@ const Home = () => {
 
   useEffect(() => {
     // 在metamask 移动端内才自动连接
-    isMobile && myWeb3?.provider?.isMetaMask && connect()
+    if (isMobile && window.ethereum) connect()
+    else if (isMobile && !window.ethereum)
+      window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/'
   }, [])
 
   const items: MenuProps['items'] = [

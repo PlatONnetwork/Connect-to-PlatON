@@ -15,14 +15,7 @@ class web3Class {
     this.web3 = new Web3(this.provider)
   }
 
-  connectWallet = () => {
-    const isMobile = document.documentElement.clientWidth < 640
-    if (isMobile && isIOS() && !this.provider) {
-      return message.warning(`${i18n.t('home.plzInMeta')}`)
-    } else if (isMobile && isAndroid() && !this.provider) {
-      window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/'
-    } else return this.provider.request({ method: 'eth_requestAccounts' })
-  }
+  connectWallet = () => this.provider.request({ method: 'eth_requestAccounts' })
 
   getChianId = () => this.provider.request({ method: 'eth_chainId' })
 
