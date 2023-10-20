@@ -15,5 +15,7 @@ export default {
     faucet: '水龙头',
     explorer: '浏览器地址',
     plzInMeta: '请在MetaMask中打开该页面!',
+    logout:'登出',
+    copyAddress:'复制钱包地址'
   },
 }

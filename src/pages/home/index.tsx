@@ -33,11 +33,11 @@ const Home = () => {
 
   const items: MenuProps['items'] = [
     {
-      label: <div onClick={() => copyFn(address)}>Copy Address</div>,
+      label: <div onClick={() => copyFn(address)}>{t('home.copyAddress')}</div>,
       key: '0',
     },
     {
-      label: <div onClick={() => setAddress('')}>Disconnect</div>,
+      label: <div onClick={() => setAddress('')}>{t('home.logout')}</div>,
       key: '1',
     },
   ]
