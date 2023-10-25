@@ -49,7 +49,10 @@ const Home = () => {
     addr && setAddress(addr)
   }
   const addNetwork = async (network: NETWORK) => {
+    const { chainId } = network
     try {
+      const curId = await myWeb3.getChianId()
+      if (chainId === curId) return message.warning(t('home.addSuccess'))
       if (!address) await connect()
       await myWeb3.switchNetwork(network)
       message.success(t('home.addSuccess'))

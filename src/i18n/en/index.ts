@@ -15,7 +15,8 @@ export default {
     faucet: 'Faucet',
     explorer: 'Block explorer URL',
     plzInMeta: 'Please open this page in MetalMask!',
-    logout:'Log out',
-    copyAddress:'Copy Address'
+    logout: 'Log out',
+    copyAddress: 'Copy Address',
+    alreadyAddNet: '您已经添加该网络',
   },
 }
