@@ -52,7 +52,7 @@ const Home = () => {
     const { chainId } = network
     try {
       const curId = await myWeb3.getChianId()
-      if (chainId === curId) return message.warning(t('home.addSuccess'))
+      if (`0x${Number(network.chainId).toString(16)}` === curId) return message.warning(t('home.alreadyAddNet'))
       if (!address) await connect()
       await myWeb3.switchNetwork(network)
       message.success(t('home.addSuccess'))

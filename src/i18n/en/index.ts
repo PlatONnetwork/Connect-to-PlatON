@@ -17,6 +17,6 @@ export default {
     plzInMeta: 'Please open this page in MetalMask!',
     logout: 'Log out',
     copyAddress: 'Copy Address',
-    alreadyAddNet: '您已经添加该网络',
+    alreadyAddNet: 'You have already added that network.',
   },
 }
