@@ -115,7 +115,7 @@ const Home = () => {
               <div className="flex justify-between mb-[22px]">
                 <div className="flex-center gap-[18px]">
                   <img src={item.icon} alt="" />
-                  <p className="text-[20px] font-b">{item.network}</p>
+                  <p className="text-[20px] font-b">{item.netLabel}</p>
                 </div>
                 {isMobile ? (
                   ''

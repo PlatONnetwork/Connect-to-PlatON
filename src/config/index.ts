@@ -6,6 +6,7 @@ import { NETWORK } from '@/config/type'
 export const supportList: NETWORK[] = [
   {
     id: 1,
+    netLabel: 'PlatON Mainnet',
     network: 'PlatON Mainnet',
     icon: platon,
     chainId: 210425,
@@ -43,6 +44,7 @@ export const supportList: NETWORK[] = [
   },
   {
     id: 2,
+    netLabel: 'PlatON Devnet',
     network: 'PlatON Dev Testnet2',
     icon: platon,
     chainId: 2206132,

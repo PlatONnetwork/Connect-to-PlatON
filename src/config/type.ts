@@ -1,6 +1,7 @@
 export type NETWORK = {
   id: number
   network: string
+  netLabel: string
   icon: string
   chainId: number
   currency: string
