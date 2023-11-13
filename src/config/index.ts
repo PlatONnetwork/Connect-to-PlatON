@@ -3,8 +3,14 @@ import usdt from '@/assets/img/usdt-logo.png'
 import dus from '@/assets/img/dus-logo.png'
 import platon from '@/assets/img/platon-logo.png'
 import { NETWORK } from '@/config/type'
-export const supportList: NETWORK[] = [
-  {
+
+type NETWORKKEY = 'mainnet' | 'devnet'
+type NETWORKOBJECT = {
+  [key in NETWORKKEY]: NETWORK
+}
+
+export const supportList: NETWORKOBJECT = {
+  mainnet: {
     id: 1,
     netLabel: 'PlatON Mainnet',
     network: 'PlatON Mainnet',
@@ -42,7 +48,7 @@ export const supportList: NETWORK[] = [
       },
     ],
   },
-  {
+  devnet: {
     id: 2,
     netLabel: 'PlatON Devnet',
     network: 'PlatON Dev Testnet2',
@@ -81,4 +87,4 @@ export const supportList: NETWORK[] = [
       },
     ],
   },
-]
+}
