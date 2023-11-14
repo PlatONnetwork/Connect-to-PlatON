@@ -78,7 +78,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex-between lt-md:flex-col">
+      <div className="flex-between lt-md:flex-col px-[24px]">
         <div className="flex flex-col gap-[12px] lt-md:mt-[24px] ">
           <p className="font-b text-[24px] leading-[24px]">{t('home.connectTo')} PlatON</p>
           <p className="text-[#999] text-[14px] leading-[14px]">{t('home.slogan')}</p>
