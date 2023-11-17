@@ -26,7 +26,9 @@ declare global {
   const isIOS: typeof import('../src/utils/index')['isIOS']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
+  const onWatchAsset: typeof import('../src/utils/wallet')['onWatchAsset']
   const openNotification: typeof import('../src/utils/index')['openNotification']
+  const setupNetwork: typeof import('../src/utils/wallet')['setupNetwork']
   const startTransition: typeof import('react')['startTransition']
   const supportList: typeof import('../src/config/index')['supportList']
   const type: typeof import('../src/config/type')['type']
@@ -137,5 +139,6 @@ declare global {
   const useVirtualList: typeof import('ahooks')['useVirtualList']
   const useWebSocket: typeof import('ahooks')['useWebSocket']
   const useWhyDidYouUpdate: typeof import('ahooks')['useWhyDidYouUpdate']
+  const watchAsset: typeof import('../src/utils/wallet')['watchAsset']
   const web3: typeof import('../src/utils/web3')['default']
 }

@@ -1,10 +1,8 @@
+import { isDesktop, isMobile, isIOS } from 'react-device-detect'
 import myWeb3 from '@/utils/web3'
-import { Dropdown, ConfigProvider, MenuProps, Col, message } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
-import metamask from '@/assets/img/metamask.png'
+import { notification, Col, message } from 'antd'
 import { NETWORK, TOKEN } from '@/config/type'
 import errorHandler from '@/utils/errorHandler'
-import useClientSize from '@/hooks/useClientSize'
 import { useTranslation } from 'react-i18next'
 import { useGlobal } from '@/context/GlobalProvider'
 
@@ -13,8 +11,6 @@ const Home = () => {
   const [curNetwork, setCurNetwork] = useState('mainnet')
   const [open, setOpen] = useState(false)
   const { lang, address, setAddress } = useGlobal()
-  const { clientWidth } = useClientSize()
-  const isMobile = useMemo(() => clientWidth <= 640, [clientWidth])
 
   const changeLang = lang => {
     i18n.changeLanguage(lang)
@@ -28,49 +24,152 @@ const Home = () => {
   }, [lang])
 
   useEffect(() => {
-    // 在metamask 移动端内才自动连接
+    // 在移动端内才自动连接
     isMobile && window.ethereum && connect()
   }, [])
-
-  // const items: MenuProps['items'] = [
-  //   {
-  //     label: <div onClick={() => copyFn(address)}>{t('home.copyAddress')}</div>,
-  //     key: '0',
-  //   },
-  //   {
-  //     label: <div onClick={() => setAddress('')}>{t('home.logout')}</div>,
-  //     key: '1',
-  //   },
-  // ]
-
   const connect = async () => {
-    if (isMobile && !window.ethereum)
-      return (window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/')
+    // if (isMobile && !window.ethereum) // 不一定是metamask
+    //   return (window.location.href = 'https://metamask.app.link/dapp/uataddnetwork.platon.network/')
     const [addr] = await myWeb3.connectWallet()
     addr && setAddress(addr)
   }
   const addNetwork = async (network: NETWORK) => {
     const { chainId } = network
     try {
+      if (!window.ethereum) throw new Error('missing provider')
       const curId = await myWeb3.getChianId()
       if (`0x${Number(chainId).toString(16)}` === curId) return message.warning(t('home.alreadyAddNet'))
       if (!address) await connect()
       await myWeb3.switchNetwork(network)
-      message.success(t('home.addSuccess'))
     } catch (error) {
       errorHandler(error)
+    }
+  }
+  const showSuccessMsg = () =>
+    notification.success({
+      message: 'Succeeded',
+      description: 'Added to wallet successfully!',
+    })
+  const showFailedMsg = (msg: string) => notification.error({ message: 'Failed', description: msg })
+
+  const isBitgetWallet = (provider: any) => provider?.isBitKeep || provider?.isBitEthereum
+  const isTrustWallet = (provider: any) => provider?.isTrust || provider?.isTrustWallet
+  const isTokenPocket = (provider: any) => provider?.isTokenPocket
+  const isOkxWallet = () => window.okxwallet || window.okxwallet
+  const isCoinbaseWallet = (provider: any) => provider?.isCoinbaseWallet
+  const isParticleWallet = (provider: any) => provider?.isParticle || provider?.isParticleNetwork
+
+  const ALREADY_ADDED_MSG = 'Already added!'
+  const REJECT_MSG = 'User reject the request.'
+  const FAILED_TO_ADD_MSG = 'Failed to add to wallet.'
+  const UNSUPPORTED_MSG = 'Adding token is not supported by the wallet.'
+  const getResolvedCb = (result: any, provider: any) => {
+    if (isDesktop) {
+      if (isTrustWallet(provider)) {
+        return showSuccessMsg
+      }
+
+      if (isTokenPocket(provider) || isCoinbaseWallet(provider)) {
+        return () => {
+          if (result === true) {
+            showSuccessMsg()
+          } else {
+            showFailedMsg(REJECT_MSG)
+          }
+        }
+      }
+
+      // 默认按照 metamask 返回的结果逻辑
+      return () => {
+        if (result === true) {
+          showSuccessMsg()
+        } else {
+          showFailedMsg(FAILED_TO_ADD_MSG)
+        }
+      }
+    } else {
+      // app 浏览器端
+      if (isBitgetWallet(provider)) {
+        // bitget app 返回的东西无法分清成功失败，全依赖于内部的提示
+        return () => {}
+      }
+
+      if (isOkxWallet()) {
+        return () => {
+          if (isIOS) {
+            showSuccessMsg()
+          } else {
+            if (result === true) {
+              showSuccessMsg()
+            } else {
+              showFailedMsg(FAILED_TO_ADD_MSG)
+            }
+          }
+        }
+      }
+
+      if (isCoinbaseWallet(provider)) {
+        return () => {
+          if (result === true) {
+            showSuccessMsg()
+          } else {
+            showFailedMsg(REJECT_MSG)
+          }
+        }
+      }
+
+      // 默认按照 metamask 返回的结果逻辑
+      return () => {
+        if (result === true) {
+          showSuccessMsg()
+        } else {
+          showFailedMsg(FAILED_TO_ADD_MSG)
+        }
+      }
+    }
+  }
+
+  const getRejectedCb = (error: any, provider: any) => {
+    const msg = typeof error === 'string' ? error : error?.message
+    const errMsg = msg || FAILED_TO_ADD_MSG
+
+    if (provider?.isUniPassProvider || isParticleWallet(provider) || provider?.isWalletConnect) {
+      return () => {
+        showFailedMsg(UNSUPPORTED_MSG)
+      }
+    }
+
+    if (isDesktop) {
+      if (isTrustWallet(provider)) {
+        return () => {
+          if (error?.code === -32602) {
+            showFailedMsg(ALREADY_ADDED_MSG)
+          } else {
+            showFailedMsg(errMsg)
+          }
+        }
+      }
+    }
+
+    return () => {
+      showFailedMsg(errMsg)
     }
   }
 
   const addToken = async (network: NETWORK, token: TOKEN) => {
     try {
       if (!address) await connect()
+      if (!window.ethereum) throw new Error('missing provider')
       const chainId = await myWeb3.getChianId()
       if (network.chainId !== chainId) await myWeb3.switchNetwork(network)
-      await myWeb3.addToken(token)
-      message.success(t('home.addSuccess'))
+      const result = await myWeb3.addToken(token)
+      console.log('result', result)
+      const cb = getResolvedCb(result, myWeb3.provider)
+      cb()
     } catch (error) {
-      errorHandler(error)
+      console.log('error', error)
+      const cb = getRejectedCb(error, myWeb3.provider)
+      cb()
     }
   }
 

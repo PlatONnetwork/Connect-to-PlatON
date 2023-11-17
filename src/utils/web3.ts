@@ -37,17 +37,25 @@ class web3Class {
         ],
       }
 
+      const addNet = async (resolve, reject) => {
+        try {
+          const add = await this.provider.request(add_data)
+          resolve(add)
+        } catch (addError) {
+          reject(addError)
+        }
+      }
+
       try {
         const res = await this.provider.request(switch_data)
+        console.log('switch net', res)
+        if ([-32603, 4902].includes(res?.code)) {
+          addNet(resolve, reject)
+        }
         resolve(res)
       } catch (error) {
         if (error.code === 4902 || (error.code === -32603 && error.data.originalError.code === 4902)) {
-          try {
-            const add = await this.provider.request(add_data)
-            resolve(add)
-          } catch (addError) {
-            reject(addError)
-          }
+          addNet(resolve, reject)
         } else {
           reject(error)
         }
@@ -55,8 +63,11 @@ class web3Class {
     })
   }
 
-  addToken = async (token: TOKEN) =>
-    this.provider.request({
+  addToken = async (token: TOKEN) => {
+    if (!this.provider) {
+      throw new Error('missing provider')
+    }
+    const tokenAdded = this.provider.request({
       method: 'wallet_watchAsset',
       params: {
         type: 'ERC20',
@@ -68,6 +79,9 @@ class web3Class {
         },
       },
     })
+
+    return tokenAdded
+  }
 }
 
 export default new web3Class()
