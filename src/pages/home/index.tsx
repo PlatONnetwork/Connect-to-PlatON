@@ -18,7 +18,6 @@ const Home = () => {
   }
 
   const isInMobileBrowser = isMobileOnly && !window.ethereum
-  const isInDapp = isMobileOnly && window.ethereum
 
   useEffect(() => {
     if (lang !== localStorage.getItem('langToken')) {
@@ -266,8 +265,12 @@ const Home = () => {
                 className="btn w-btn important-w-full mb-[30px]"
                 onClick={() => {
                   // mobile端，点击按钮弹出连接框
-                  // addNetwork(networkData)
-                  isInMobileBrowser && setShowConnectors(true)
+                  if (window.ethereum) {
+                    //已在钱包内
+                    setShowConnectors(true)
+                  } else {
+                    addNetwork(networkData)
+                  }
                 }}
               >
                 {t('home.addToWallet')}
