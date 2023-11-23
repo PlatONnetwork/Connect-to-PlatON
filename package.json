@@ -15,6 +15,7 @@
     "@vitejs/plugin-react": "^4.0.3",
     "@vitejs/plugin-react-swc": "^3.4.0",
     "antd": "^5.9.4",
+    "callapp-lib": "^3.5.3",
     "clsx": "^2.0.0",
     "i18next": "^23.5.1",
     "install": "^0.13.0",

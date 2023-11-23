@@ -18,5 +18,8 @@ export default {
     logout: 'Log out',
     copyAddress: 'Copy Address',
     alreadyAddNet: 'You have already added that network.',
+    chooseWallet: 'Choose Wallet',
+    missProvider: 'Please install the wallet plug-in.',
+    missApp: 'Please install the wallet App.',
   },
 }

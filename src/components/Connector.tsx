@@ -1,19 +1,10 @@
 import { Modal, ConfigProvider } from 'antd'
 import { useTranslation } from 'react-i18next'
-import metamaskWallet from '@/assets/img/metamaskWallet.png'
+import walletList from '@/connectors/injectWallet'
 
 const Connector = (props: any) => {
   const { t } = useTranslation()
-  const { open, setOpen, connect } = props
-
-  const walletList = [
-    {
-      id: 0,
-      label: 'METAMASK',
-      icon: metamaskWallet,
-      connect,
-    },
-  ]
+  const { showConnectors, setShowConnectors } = props
   return (
     <ConfigProvider
       theme={{
@@ -26,19 +17,28 @@ const Connector = (props: any) => {
         },
       }}
     >
-      <Modal destroyOnClose onCancel={() => setOpen(false)} footer={null} title={t('home.connectWallet')} open={open}>
-        <ul className="flex-center gap-[12px] my-[60px]">
+      <Modal
+        destroyOnClose
+        onCancel={() => setShowConnectors(false)}
+        footer={null}
+        title={t('home.chooseWallet')}
+        open={showConnectors}
+      >
+        <ul className="flex-col flex-center gap-[12px] my-[30px]">
           {walletList.map(item => {
             return (
               <li
                 onClick={() => {
                   item.connect()
-                  setOpen(false)
+                  setShowConnectors(false)
                 }}
                 key={item.id}
-                className="w-[250px] h-[64px] pointer bg-[#000] flex-center rounded-[30px]"
+                className="w-[250px] h-[64px] pointer bg-[#000] flex-center text-left rounded-[30px]"
               >
-                <img src={item.icon} alt="" />
+                <p className="w-[120px] flex items-center gap-[20px]">
+                  <img className="w-[32px] h-[32px]" src={item.icon} alt="" />
+                  <span>{item.name}</span>
+                </p>
               </li>
             )
           })}

@@ -1,4 +1,4 @@
-import { message } from 'antd'
+import { notification } from 'antd'
 
 const EXCEPTION_MAP = {
   '4001': 'User denied the action',
@@ -23,7 +23,7 @@ const errorHandler = error => {
     errMessage = error?.message || JSON.stringify(error)
   }
 
-  return message.error(errMessage)
+  return notification.error({ message: 'Failed', description: errMessage })
 }
 
 export default errorHandler

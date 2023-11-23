@@ -3,13 +3,14 @@
 |                        | 成功      | 拒绝             | 重复添加 | app 反馈情况                 |
 | ---------------------- | --------- | ---------------- | -------- | ---------------------------- |
 | Metamask(v7.10.0)      | true      | Error code: 4001 | true     | 成功时有反馈                 | done
-| imToken(v2.13.5)       | N/A       | N/A              | N/A      | N/A                          | 不支持添加
 | Bitget(v8.5.1)         | ''        | ''               | N/A      | 成功、重复添加时有反馈       |
-| trust(v10.1)(链不支持) | 无返回值  | 无返回值         | 无返回值 | 重复添加时有反馈             |
 | tp wallet(v2.1.6)      | true      | 'User cancel'    | true     | 无反馈                       |
 | okx(v6.41.0)           | undefined | Error code: 4001 | N/A      | 成功有反馈，重复添加会报失败 |
 | coinbase(v28.68.0)     | true      | false            | ?        | 重复添加会报失败             |
 | coin98(v14.1.5)        | ？        | Error code: 4001 | ?        | 无反馈，当做不支持           |
+
+| trust(v10.1)(链不支持) | 无返回值  | 无返回值         | 无返回值 | 重复添加时有反馈             |
+| imToken(v2.13.5)       | N/A       | N/A              | N/A      | N/A                          | 不支持添加
 | particle(v1.0.5)       | N/A       | N/A              | N/A      | N/A                          |
 
 
@@ -20,12 +21,12 @@
 | ----------------------- | ---- | ---------------------- | -------- | --------------------- |
 | Metamask                | true | Error code: 4001       | true     | 成功时有反馈           |  done
 | Bitget(v8.6.0)          | ''   | ''                     | N/A      | 成功、重复添加时有反馈  |
-| trust(v8.2.7)(链不支持) | ?    | ?                      | ?        | 重复添加时有反馈        |
 | tp wallet(v1.9.0)       | true | 'cancel'               | N/A      | 重复添加时有反馈       |
 | okx(v6.41.0)            | true | false                  | true     | 成功、重复添加有反馈   |
 | coinbase(v28.68.0)      | true | false/Error code: 4001 | ?        | 重复添加会报失败       |
 | coin98(v14.1.5)         | ?    | Error code: 4001       | ?        | 无反馈，当做不支持     |
 
+| trust(v8.2.7)(链不支持) | ?    | ?                      | ?        | 重复添加时有反馈        |
 | particle(v1.0.5)        | N/A  | N/A                    | N/A      | N/A  不支持添加       |
 | imToken                 | N/A  | N/A                    | N/A      | N/A  不支持添加       |   
 

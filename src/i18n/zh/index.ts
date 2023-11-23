@@ -18,5 +18,8 @@ export default {
     logout: '登出',
     copyAddress: '复制钱包地址',
     alreadyAddNet: '您已经添加该网络',
+    chooseWallet: '选择需要连接的钱包',
+    missProvider: '请安装钱包插件',
+    missApp: '请安装钱包',
   },
 }
