@@ -267,9 +267,9 @@ const Home = () => {
                   // mobile端，点击按钮弹出连接框
                   if (window.ethereum) {
                     //已在钱包内
-                    setShowConnectors(true)
-                  } else {
                     addNetwork(networkData)
+                  } else {
+                    setShowConnectors(true)
                   }
                 }}
               >
