@@ -98,12 +98,12 @@ const walletList = [
     icon: bitgetIcon,
     connect: callBitgetApp,
   },
-  {
-    id: 4,
-    name: 'ImToken',
-    icon: imTokenIcon,
-    connect: callImTokenWalletApp,
-  },
+  // {
+  //   id: 4,
+  //   name: 'ImToken',
+  //   icon: imTokenIcon,
+  //   connect: callImTokenWalletApp,
+  // },
   {
     id: 5,
     name: 'Coin98',
