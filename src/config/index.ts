@@ -25,8 +25,8 @@ export const supportList: NETWORKOBJECT = {
       {
         id: 11,
         icon: dus,
-        label: 'DUS（Mainnet)',
-        symbol: 'DUS',
+        label: 'DUSD（Mainnet)',
+        symbol: 'DUSD',
         contractAddress: '0x8c171d2e96619fa18b8f49fdbf3eb5589b97a97d',
         decimal: 6,
       },
